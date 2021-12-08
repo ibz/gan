@@ -1,0 +1,2 @@
+pimoroni-bme280
+smbus
