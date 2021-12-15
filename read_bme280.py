@@ -20,7 +20,7 @@ filename = now.strftime("%Y-%m-%d.csv")
 
 if not os.path.exists(filename):
     with open(filename, 'w') as f:
-        f.write("ts,temperature,pressure,humidity\n")
+        f.write("ts,temp,press,humid\n")
 
 with open(filename, 'a') as f:
     f.write("%d,%.2f,%.2f,%.2f\n" % (now.timestamp(), temperature, pressure, humidity))
