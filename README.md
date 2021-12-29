@@ -10,6 +10,7 @@ Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually 
   * On Mac you can use [balenaEtcher](https://www.balena.io/etcher/).
 * Boot your Pi Zero (with attached sensors - hot-plugging USB devices [might not always work](https://forums.raspberrypi.com/viewtopic.php?t=23205#p217196)!).
 * SSH into the Pi.
+* Generate a config file for digitemp. For example, if you have a single USB sensor, you can run `digitemp_DS9097 -i -s /dev/ttyUSB0`
 * Download `gan`: `curl -sSL -o gan.zip https://github.com/ibz/gan/archive/refs/heads/master.zip && unzip gan.zip && rm gan.zip && mv gan-master gan`
 * Set up a cronjob that reads the sensors. The data will be saved locally.
 * You will need [`stasi`](https://github.com/ibz/stasi) to collect data from multiple `gan` sensors and generate graphs.
