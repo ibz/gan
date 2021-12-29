@@ -2,6 +2,11 @@
 
 Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually a Raspberry Pi Zero).
 
+## Supported sensors
+
+* **USB-attached DS18B20 sensors**. These are nice because they don't require you messing with wires and (some) are waterproof. You can find them on eBay. The downside is they only measure temperature.
+* [**BME280 Breakout**](https://shop.pimoroni.com/products/bme280-breakout) can measure temperature, humidity and pressure. You can buy it directly from Pimoroni.
+
 ## Usage
 
 * Use [`gan-gen`](https://github.com/ibz/gan-gen) to generate a minimal OS image you can use to run `gan` on.
@@ -10,17 +15,14 @@ Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually 
   * On Mac you can use [balenaEtcher](https://www.balena.io/etcher/).
 * Boot your Pi Zero (with attached sensors - hot-plugging USB devices [might not always work](https://forums.raspberrypi.com/viewtopic.php?t=23205#p217196)!).
 * SSH into the Pi.
-* Generate a config file for digitemp. For example, if you have a single USB sensor, you can run `digitemp_DS9097 -i -s /dev/ttyUSB0`
+* If using the DS18B20 USB sensor, you will be using `digitemp` to read the data. `digitemp` is already installed on the SD card from `gan-gen`, but it needs a config file.
+  * Generate a config file for digitemp. For example, if you have a single USB sensor, you can run `digitemp_DS9097 -i -s /dev/ttyUSB0 && mv ~/.digitemprc ~/.digitemprc-0`
+* Create a directory to store the data files: `mkdir /home/gan/data/<SENSOR_NAME>`.
 * Download `gan`: `curl -sSL -o gan.zip https://github.com/ibz/gan/archive/refs/heads/master.zip && unzip gan.zip && rm gan.zip && mv gan-master gan`
 * Set up a cronjob that reads the sensors. The data will be saved locally.
-  * For example: `* * * * * cd /home/gan/data/<SENSOR_NAME> && python3 /home/gan/gan/read_digitemp.py single`
+  * For example: `* * * * * cd /home/gan/data/<SENSOR_NAME> && python3 /home/gan/gan/read_digitemp.py 0`
 * You will need [`stasi`](https://github.com/ibz/stasi) to collect data from multiple `gan` sensors and generate graphs.
   * `mkdir ~/.ssh && chmod 700 ~/.ssh` then add the public key of the machine running `stasi` to `~/.ssh/authorized_keys`
-
-## Supported sensors
-
-* **USB-attached DS18B20 sensors**. These are nice because they don't require you messing with wires and (some) are waterproof. You can find them on eBay. The downside is they only measure temperature.
-* [**BME280 Breakout**](https://shop.pimoroni.com/products/bme280-breakout) can measure temperature, humidity and pressure. You can buy it directly from Pimoroni.
 
 ## TODO
 
