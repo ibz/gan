@@ -13,6 +13,7 @@ Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually 
 * Download `gan`: `curl -sSL -o gan.zip https://github.com/ibz/gan/archive/refs/heads/master.zip && unzip gan.zip && rm gan.zip && mv gan-master gan`
 * Set up a cronjob that reads the sensors. The data will be saved locally.
 * You will need [`stasi`](https://github.com/ibz/stasi) to collect data from multiple `gan` sensors and generate graphs.
+  * `mkdir ~/.ssh && chmod 700 ~/.ssh` then add the public key of the machine running `stasi` to `~/.ssh/authorized_keys`
 
 ## Supported sensors
 
