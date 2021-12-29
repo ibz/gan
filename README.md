@@ -17,8 +17,7 @@ Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually 
 * SSH into the Pi.
 * If using the DS18B20 USB sensor, you will be using `digitemp` to read the data. `digitemp` is already installed on the SD card from `gan-gen`, but it needs a config file.
   * Generate a config file for digitemp. For example, if you have a single USB sensor, you can run `digitemp_DS9097 -i -s /dev/ttyUSB0 && mv ~/.digitemprc ~/.digitemprc-0`
-* Create a directory to store the data files: `mkdir /home/gan/data/<SENSOR_NAME>`.
-* Download `gan`: `curl -sSL -o gan.zip https://github.com/ibz/gan/archive/refs/heads/master.zip && unzip gan.zip && rm gan.zip && mv gan-master gan`
+* Create a directory to store the data files: `mkdir -p /home/gan/data/<SENSOR_NAME>`.
 * Set up a cronjob that reads the sensors. The data will be saved locally.
   * For example: `* * * * * cd /home/gan/data/<SENSOR_NAME> && python3 /home/gan/gan/read_digitemp.py 0`
 * You will need [`stasi`](https://github.com/ibz/stasi) to collect data from multiple `gan` sensors and generate graphs.
