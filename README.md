@@ -1,6 +1,8 @@
 # gan
 
-Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually a Raspberry Pi Zero).
+`gan` includes some very simple scripts that read data from temperature sensors and save this data locally in CSV files. It is intended to be run on simple Raspberry Pi OS-based machines (usually Raspberry Pi Zero) with attached sensors.
+
+[`stasi`](https://github.com/ibz/stasi) will be used to centralize data from multiple `gan` sensors and generate graphs.
 
 ## Supported sensors
 
@@ -9,7 +11,7 @@ Temperature sensor to be run on a simple Raspberry Pi OS-based machine (usually 
 
 ## Usage
 
-* Use [`gan-gen`](https://github.com/ibz/gan-gen) to generate a minimal OS image you can use to run `gan` on.
+* Use [`gan-gen`](https://github.com/ibz/gan-gen) to generate a minimal OS image which includes `gan`.
 * Flash the image to a Micro SD card:
   * On Linux you can use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (`rpi-imager`).
   * On Mac you can use [balenaEtcher](https://www.balena.io/etcher/).
